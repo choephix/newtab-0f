@@ -39,17 +39,23 @@ function App() {
 
           <SearchBar />
 
-          <PriorityBookmarks 
-            bookmarks={bookmarks.priority} 
-            onMove={moveBookmark}
-            section="priority"
-          />
+          <div className="mt-8">
+            <PriorityBookmarks 
+              bookmarks={bookmarks.priority} 
+              onMove={moveBookmark}
+              section="priority"
+            />
+          </div>
+
+          <hr className="my-8 border-gray-300" />
 
           <TabloidBookmarks 
             bookmarks={bookmarks.tabloid} 
             onMove={moveBookmark}
             section="tabloid"
           />
+
+          <hr className="my-8 border-gray-300" />
 
           <BelowFoldBookmarks 
             bookmarks={bookmarks.belowFold} 

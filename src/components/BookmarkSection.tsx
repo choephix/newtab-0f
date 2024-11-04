@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function BookmarkSection({ children, section, onMove, className = "" }: Props) {
-  const [{ isOver, canDrop }, drop] = useDrop(() => ({
+  const [{ isOver, canDrop, isDragging }, drop] = useDrop(() => ({
     accept: 'bookmark',
     drop: (item: { bookmark: Bookmark; fromSection: string }) => {
       if (item.fromSection !== section) {
@@ -20,6 +20,7 @@ export function BookmarkSection({ children, section, onMove, className = "" }: P
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop() && monitor.getItem()?.fromSection !== section,
+      isDragging: monitor.getItem()?.fromSection === section,
     }),
   }));
 
@@ -30,7 +31,8 @@ export function BookmarkSection({ children, section, onMove, className = "" }: P
         ${className}
         rounded-xl
         transition-all duration-200
-        ${isOver && canDrop ? 'ring-4 ring-blue-400 ring-opacity-50 bg-blue-50' : 'ring-1 ring-gray-200'}
+        ${(isOver && canDrop) || isDragging ? 'ring-4 ring-blue-400 ring-opacity-50 bg-blue-50' : ''}
+        ${canDrop || isDragging ? 'ring-4 ring-blue-400' : 'ring-1 ring-gray-200'}
       `}
     >
       {children}
