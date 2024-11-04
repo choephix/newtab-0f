@@ -29,8 +29,8 @@ export function DraggableBookmark({
     type: 'bookmark',
     item: () => {
       // Update the Valtio proxy when drag starts
-      draggedItemState.bookmark = bookmark;
-      draggedItemState.fromSection = section;
+      draggedItemState.draggedBookmark = bookmark;
+      draggedItemState.draggedFromSection = section;
       return { bookmark, fromSection: section, index };
     },
     collect: (monitor) => ({
@@ -38,8 +38,8 @@ export function DraggableBookmark({
     }),
     end: () => {
       // Reset the Valtio proxy when drag ends
-      draggedItemState.bookmark = null;
-      draggedItemState.fromSection = null;
+      draggedItemState.draggedBookmark = null;
+      draggedItemState.draggedFromSection = null;
     },
   }));
 

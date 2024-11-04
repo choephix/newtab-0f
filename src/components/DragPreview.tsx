@@ -10,7 +10,7 @@ export function DragPreview() {
 
   const snapshot = useSnapshot(draggedItemState); // Use Valtio snapshot
 
-  if (!isDragging || !currentOffset || !snapshot.bookmark) {
+  if (!isDragging || !currentOffset || !snapshot.draggedBookmark) {
     return null;
   }
 
@@ -32,7 +32,7 @@ export function DragPreview() {
         <div className='w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full mr-3'>
           <img src={iconUrl} alt="Icon" className='w-5 h-5 text-gray-500' />
         </div>
-        <span className='text-gray-700'>{snapshot.bookmark.label}</span>
+        <span className='text-gray-700'>{snapshot.draggedBookmark.label}</span>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import { draggedItemState } from './state/draggedItem';
 import { useSnapshot } from 'valtio';
 
 function App() {
-  const { bookmark} = useSnapshot(draggedItemState);
+  const { draggedBookmark: bookmark} = useSnapshot(draggedItemState);
 
   const [bookmarks, setBookmarks] = useState({
     priority: initialPriority,
