@@ -1,7 +1,6 @@
-import React from 'react';
-import { DraggableBookmark } from './DraggableBookmark';
-import { BookmarkSection } from './BookmarkSection';
 import { Bookmark } from '../types/bookmark';
+import { BookmarkSection } from './BookmarkSection';
+import { DraggableBookmark } from './DraggableBookmark';
 
 interface Props {
   bookmarks: Bookmark[];
@@ -12,7 +11,7 @@ interface Props {
 export function TabloidBookmarks({ bookmarks, onMove, section }: Props) {
   return (
     <BookmarkSection section={section} onMove={onMove} className='p-4 mt-2 py-8'>
-      <div className='grid grid-cols-2 gap-4 max-w-2xl mx-auto'>
+      <div className='grid grid-cols-2 gap-4 mx-auto'>
         {bookmarks.map((bookmark, index) => (
           <a
             key={bookmark.label}
@@ -26,7 +25,7 @@ export function TabloidBookmarks({ bookmarks, onMove, section }: Props) {
               onMove={onMove}
               index={index}
               className='flex items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow'
-              iconContainerClassName='w-12 h-12 flex items-center justify-center bg-gray-100 rounded-lg mr-4'
+              iconContainerClassName='w-12 h-12 flex items-center justify-center rounded-lg mr-4'
               iconClassName='w-6 h-6 text-gray-700'
               labelClassName='text-lg font-medium text-gray-700'
             />
