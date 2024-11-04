@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import * as LucideIcons from 'lucide-react';
 import { Bookmark } from '../types/bookmark';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
@@ -37,7 +36,7 @@ export function DraggableBookmark({
     preview(getEmptyImage());
   }, [preview]);
 
-  const IconComponent = LucideIcons[bookmark.icon as keyof typeof LucideIcons];
+  const iconUrl = '/assets/planet.svg';
 
   return (
     <div
@@ -51,7 +50,7 @@ export function DraggableBookmark({
       data-testid={`bookmark-${bookmark.label}`}
     >
       <div className={iconContainerClassName}>
-        {IconComponent && <IconComponent className={iconClassName} />}
+        <img src={iconUrl} alt="Icon" className={iconClassName} />
       </div>
       <span className={labelClassName}>{bookmark.label}</span>
     </div>
