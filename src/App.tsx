@@ -47,7 +47,7 @@ function App() {
             />
           </div>
 
-          <hr className="my-8 border-gray-300" />
+          <hr className="my-2 border-gray-300" />
 
           <TabloidBookmarks 
             bookmarks={bookmarks.tabloid} 
@@ -55,7 +55,7 @@ function App() {
             section="tabloid"
           />
 
-          <hr className="my-8 border-gray-300" />
+          <hr className="my-2 border-gray-300" />
 
           <BelowFoldBookmarks 
             bookmarks={bookmarks.belowFold} 
