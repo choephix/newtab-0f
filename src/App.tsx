@@ -8,8 +8,12 @@ import { BelowFoldBookmarks } from './components/BelowFoldBookmarks';
 import { DragPreview } from './components/DragPreview';
 import { priorityBookmarks as initialPriority, tabloidBookmarks as initialTabloid, belowFoldBookmarks as initialBelowFold } from './data/sampleBookmarks';
 import { Bookmark } from './types/bookmark';
+import { draggedItemState } from './state/draggedItem';
+import { useSnapshot } from 'valtio';
 
 function App() {
+  const { bookmark} = useSnapshot(draggedItemState);
+
   const [bookmarks, setBookmarks] = useState({
     priority: initialPriority,
     tabloid: initialTabloid,
@@ -19,48 +23,49 @@ function App() {
   const moveBookmark = (bookmark: Bookmark, fromSection: string, toSection: string) => {
     setBookmarks(prev => {
       const newBookmarks = { ...prev };
-      newBookmarks[fromSection as keyof typeof bookmarks] = prev[fromSection as keyof typeof bookmarks].filter(b => b.href !== bookmark.href);
-      newBookmarks[toSection as keyof typeof bookmarks] = [...prev[toSection as keyof typeof bookmarks], bookmark];
+      newBookmarks[fromSection as keyof typeof bookmarks] = prev[
+        fromSection as keyof typeof bookmarks
+      ].filter(b => b.href !== bookmark.href);
+      newBookmarks[toSection as keyof typeof bookmarks] = [
+        ...prev[toSection as keyof typeof bookmarks],
+        bookmark,
+      ];
       return newBookmarks;
     });
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen bg-[#f8f9fa] py-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-center mb-8">
+      <div className='min-h-screen bg-[#f8f9fa] py-8 px-4'>
+        <div className='max-w-3xl mx-auto'>
+          <div className='flex justify-center mb-8'>
             <img
-              src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-              alt="Google"
-              className="h-8 object-contain"
+              src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+              alt='Google'
+              className='h-8 object-contain'
             />
           </div>
 
           <SearchBar />
 
-          <div className="mt-8">
-            <PriorityBookmarks 
-              bookmarks={bookmarks.priority} 
+          <div className='mt-8'>
+            <PriorityBookmarks
+              bookmarks={bookmarks.priority}
               onMove={moveBookmark}
-              section="priority"
+              section='priority'
             />
           </div>
 
-          <hr className="my-2 border-gray-300" />
+          <hr className='my-2 border-gray-300' style={{ visibility: bookmark ? 'hidden' : 'visible' }} />
 
-          <TabloidBookmarks 
-            bookmarks={bookmarks.tabloid} 
+          <TabloidBookmarks bookmarks={bookmarks.tabloid} onMove={moveBookmark} section='tabloid' />
+
+          <hr className='my-2 border-gray-300' style={{ visibility: bookmark ? 'hidden' : 'visible' }} />
+
+          <BelowFoldBookmarks
+            bookmarks={bookmarks.belowFold}
             onMove={moveBookmark}
-            section="tabloid"
-          />
-
-          <hr className="my-2 border-gray-300" />
-
-          <BelowFoldBookmarks 
-            bookmarks={bookmarks.belowFold} 
-            onMove={moveBookmark}
-            section="belowFold"
+            section='belowFold'
           />
         </div>
       </div>

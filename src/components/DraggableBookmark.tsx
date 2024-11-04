@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 import { Bookmark } from '../types/bookmark';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import { draggedItemState } from '../state/draggedItem'; // Import the Valtio proxy
 
 interface Props {
   bookmark: Bookmark;
@@ -26,10 +27,20 @@ export function DraggableBookmark({
 }: Props) {
   const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: 'bookmark',
-    item: { bookmark, fromSection: section, index },
+    item: () => {
+      // Update the Valtio proxy when drag starts
+      draggedItemState.bookmark = bookmark;
+      draggedItemState.fromSection = section;
+      return { bookmark, fromSection: section, index };
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    end: () => {
+      // Reset the Valtio proxy when drag ends
+      draggedItemState.bookmark = null;
+      draggedItemState.fromSection = null;
+    },
   }));
 
   useEffect(() => {

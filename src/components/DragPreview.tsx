@@ -1,13 +1,16 @@
 import { useDragLayer } from 'react-dnd';
+import { useSnapshot } from 'valtio';
+import { draggedItemState } from '../state/draggedItem'; // Import the Valtio proxy
 
 export function DragPreview() {
-  const { isDragging, item, currentOffset } = useDragLayer(monitor => ({
-    item: monitor.getItem(),
+  const { isDragging, currentOffset } = useDragLayer(monitor => ({
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   }));
 
-  if (!isDragging || !currentOffset || !item) {
+  const snapshot = useSnapshot(draggedItemState); // Use Valtio snapshot
+
+  if (!isDragging || !currentOffset || !snapshot.bookmark) {
     return null;
   }
 
@@ -29,7 +32,7 @@ export function DragPreview() {
         <div className='w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full mr-3'>
           <img src={iconUrl} alt="Icon" className='w-5 h-5 text-gray-500' />
         </div>
-        <span className='text-gray-700'>{item.bookmark.label}</span>
+        <span className='text-gray-700'>{snapshot.bookmark.label}</span>
       </div>
     </div>
   );
