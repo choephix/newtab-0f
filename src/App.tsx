@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { SearchBar } from './components/SearchBar';
-import { PriorityBookmarks } from './components/PriorityBookmarks';
-import { TabloidBookmarks } from './components/TabloidBookmarks';
+import { useSnapshot } from 'valtio';
 import { BelowFoldBookmarks } from './components/BelowFoldBookmarks';
 import { DragPreview } from './components/DragPreview';
-import { priorityBookmarks as initialPriority, tabloidBookmarks as initialTabloid, belowFoldBookmarks as initialBelowFold } from './data/sampleBookmarks';
-import { Bookmark } from './types/bookmark';
+import { PriorityBookmarks } from './components/PriorityBookmarks';
+import { SearchBar } from './components/SearchBar';
+import { TabloidBookmarks } from './components/TabloidBookmarks';
+import {
+  belowFoldBookmarks as initialBelowFold,
+  priorityBookmarks as initialPriority,
+  tabloidBookmarks as initialTabloid,
+} from './data/sampleBookmarks';
 import { draggedItemState } from './state/draggedItem';
-import { useSnapshot } from 'valtio';
+import { Bookmark } from './types/bookmark';
 
 function App() {
-  const { draggedBookmark: bookmark} = useSnapshot(draggedItemState);
+  const { draggedBookmark: bookmark } = useSnapshot(draggedItemState);
 
   const [bookmarks, setBookmarks] = useState({
     priority: initialPriority,
@@ -56,11 +60,17 @@ function App() {
             />
           </div>
 
-          <hr className='my-2 border-gray-300' style={{ visibility: bookmark ? 'hidden' : 'visible' }} />
+          <hr
+            className='my-2 border-gray-300'
+            style={{ visibility: bookmark ? 'hidden' : 'visible' }}
+          />
 
           <TabloidBookmarks bookmarks={bookmarks.tabloid} onMove={moveBookmark} section='tabloid' />
 
-          <hr className='my-2 border-gray-300' style={{ visibility: bookmark ? 'hidden' : 'visible' }} />
+          <hr
+            className='my-2 border-gray-300'
+            style={{ visibility: bookmark ? 'hidden' : 'visible' }}
+          />
 
           <BelowFoldBookmarks
             bookmarks={bookmarks.belowFold}
