@@ -40,7 +40,7 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className='min-h-screen bg-[#f8f9fa] py-8 px-4'>
+      <div className='min-h-screen bg-[#f8f9fa] py-20 px-4'>
         <div className='max-w-3xl mx-auto'>
           <div className='flex justify-center mb-8'>
             <img

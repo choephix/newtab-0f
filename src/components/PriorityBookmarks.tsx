@@ -11,7 +11,7 @@ interface Props {
 export function PriorityBookmarks({ bookmarks, onMove, section }: Props) {
   return (
     <BookmarkSection section={section} onMove={onMove} className='p-4 py-8'>
-      <div className='flex justify-center gap-4'>
+      <div className='flex flex-wrap justify-center gap-4'>
         {bookmarks.map((bookmark, index) => (
           <a
             key={bookmark.label}
@@ -24,7 +24,7 @@ export function PriorityBookmarks({ bookmarks, onMove, section }: Props) {
               section={section}
               onMove={onMove}
               index={index}
-              className='flex flex-col items-center p-4 rounded-full hover:bg-gray-100 transition-colors'
+              className='flex flex-col items-center p-4 rounded-lg hover:bg-gray-100 transition-colors'
               iconContainerClassName='w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full'
               iconClassName='w-6 h-6 text-gray-700'
               labelClassName='mt-2 text-sm text-gray-600'
