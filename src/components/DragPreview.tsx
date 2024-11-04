@@ -21,9 +21,9 @@ export function DragPreview() {
         position: 'fixed',
         pointerEvents: 'none',
         zIndex: 100,
-        left: currentOffset.x,
-        top: currentOffset.y,
-        transform: 'translate(-50%, -50%)'
+        left: 0,
+        top: 0,
+        transform: `translate(${currentOffset.x}px, ${currentOffset.y}px)`
       }}
       className="bg-white shadow-2xl rounded-xl p-4 scale-105"
     >
