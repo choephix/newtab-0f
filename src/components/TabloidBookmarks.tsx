@@ -24,10 +24,10 @@ export function TabloidBookmarks({ bookmarks, onMove, section }: Props) {
               section={section}
               onMove={onMove}
               index={index}
-              className='flex items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow'
-              iconContainerClassName='w-12 h-12 flex items-center justify-center rounded-lg mr-4'
+              className='flex flex-col items-start p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow'
+              iconContainerClassName='w-6 h-6 flex items-center justify-center rounded-lg mb-2'
               iconClassName='w-6 h-6 text-gray-700'
-              labelClassName='text-lg font-medium text-gray-700'
+              labelClassName='text-lg font-medium text-gray-700 mt-4'
             />
           </a>
         ))}
