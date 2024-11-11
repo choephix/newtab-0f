@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
-import { Bookmark } from '../types/bookmark';
+import { Bookmark } from '../../types/bookmark';
 import { getEmptyImage } from 'react-dnd-html5-backend';
-import { draggedItemState } from '../state/draggedItem'; // Import the Valtio proxy
+import { draggedItemState } from '../../state/draggedItem'; // Import the Valtio proxy
 
 interface Props {
   bookmark: Bookmark;

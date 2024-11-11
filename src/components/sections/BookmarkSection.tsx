@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import { Bookmark } from '../types/bookmark';
+import { Bookmark } from '../../types/bookmark';
 
 interface Props {
   children: React.ReactNode;

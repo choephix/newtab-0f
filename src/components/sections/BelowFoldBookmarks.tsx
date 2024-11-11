@@ -1,6 +1,6 @@
-import { Bookmark } from '../types/bookmark';
+import { Bookmark } from '../../types/bookmark';
 import { BookmarkSection } from './BookmarkSection';
-import { DraggableBookmark } from './DraggableBookmark';
+import { DraggableBookmark } from '../items/DraggableBookmark';
 
 interface Props {
   bookmarks: Bookmark[];
@@ -8,10 +8,10 @@ interface Props {
   section: string;
 }
 
-export function TabloidBookmarks({ bookmarks, onMove, section }: Props) {
+export function BelowFoldBookmarks({ bookmarks, onMove, section }: Props) {
   return (
-    <BookmarkSection section={section} onMove={onMove} className='p-4 mt-2 py-8'>
-      <div className='grid grid-cols-2 gap-4 mx-auto'>
+    <BookmarkSection section={section} onMove={onMove} className='p-4 mt-2'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0'>
         {bookmarks.map((bookmark, index) => (
           <a
             key={bookmark.label}
@@ -24,10 +24,10 @@ export function TabloidBookmarks({ bookmarks, onMove, section }: Props) {
               section={section}
               onMove={onMove}
               index={index}
-              className='flex flex-col items-start p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow'
-              iconContainerClassName='w-6 h-6 flex items-center justify-center rounded-lg mb-2'
-              iconClassName='w-6 h-6 text-gray-700'
-              labelClassName='text-lg font-medium text-gray-700 mt-4'
+              className='flex items-center p-1 rounded-lg hover:bg-gray-100 transition-colors text-sm'
+              iconContainerClassName='w-6 h-6 flex items-center justify-center bg-gray-100 rounded-full mr-3'
+              iconClassName='w-5 h-5 text-gray-700'
+              labelClassName='text-gray-700'
             />
           </a>
         ))}

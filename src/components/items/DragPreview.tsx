@@ -1,6 +1,6 @@
 import { useDragLayer } from 'react-dnd';
 import { useSnapshot } from 'valtio';
-import { draggedItemState } from '../state/draggedItem'; // Import the Valtio proxy
+import { draggedItemState } from '../../state/draggedItem'; // Import the Valtio proxy
 
 export function DragPreview() {
   const { isDragging, currentOffset } = useDragLayer(monitor => ({

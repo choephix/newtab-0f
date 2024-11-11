@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useSnapshot } from 'valtio';
-import { BelowFoldBookmarks } from './components/BelowFoldBookmarks';
-import { DragPreview } from './components/DragPreview';
-import { PriorityBookmarks } from './components/PriorityBookmarks';
-import { SearchBar } from './components/SearchBar';
-import { TabloidBookmarks } from './components/TabloidBookmarks';
+import { BelowFoldBookmarks } from './components/sections/BelowFoldBookmarks';
+import { DragPreview } from './components/items/DragPreview';
+import { PriorityBookmarks } from './components/sections/PriorityBookmarks';
+import { SearchBar } from './components/sections/SearchBar';
+import { TabloidBookmarks } from './components/sections/TabloidBookmarks';
 import {
   belowFoldBookmarks as initialBelowFold,
   priorityBookmarks as initialPriority,
